@@ -13,15 +13,6 @@ declare var $;
 export class AppComponent implements OnInit {
   title = 'summernote';
 
-  public EmailStages = [
-    "Reservation",
-    "Damage",
-    "Return Reminder",
-    "OverDue",
-    "Return",
-  ];
-
-
 
   ngOnInit() {
 
@@ -85,52 +76,4 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // customButton() {
-  //   return (context) => {
-  //     const ui = $.summernote.ui;
-  //     const button = ui.button({
-  //       contents: 'Test btn',
-  //       tooltip: 'Test',
-  //       click: function () {
-  //         $('#summernote').summernote("editor.insertText", "text");
-  //       }
-  //     });
-  //     return button.render();
-  //   }
-  // }
-
-  BindList() {
-    return this.EmailStages;
-  }
-
-  customButton() {
-    return (context) => {
-      var ui = $.summernote.ui;
-      var list = this.BindList();;
-
-      var button = ui.buttonGroup([
-        ui.button({
-          className: 'dropdown-toggle',
-          contents: '<span class="fa fa-smile-o"></span> <span class="caret"></span>',
-          tooltip: "Insert Greetings",
-          data: {
-            toggle: 'dropdown'
-          }
-        }),
-        ui.dropdown({
-          className: 'dropdown-style emoji-list',
-          contents: "<ul>" + list + "</ul>",
-          callback: function ($dropdown) {
-            $dropdown.find('i').each(function () {
-              $(this).click(function () {
-                $('#summernote').summernote("editor.insertText", "text");
-              });
-            });
-          }
-        })
-      ]);
-
-      return button.render();
-    }
-  }
 }
