@@ -8,9 +8,9 @@ Run `npm summernote` for install.
 
 ## Code scaffolding
 
-Set '"node_modules/summernote/dist/summernote-lite.css"` to angular.json in style.css 
+Set 'node_modules/summernote/dist/summernote-lite.css` to angular.json in style.css 
 & also set 
- '"node_modules/summernote/dist/summernote-lite.js"' in scripts
+ 'node_modules/summernote/dist/summernote-lite.js' in scripts
  
 ## Viewer
 
