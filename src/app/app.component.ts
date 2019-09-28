@@ -15,20 +15,30 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    $('#summernote').summernote({
+      toolbar: [
+        ['misc', ['codeview', 'undo', 'redo', 'codeBlock']],
+        ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+        ['fontsize', ['fontname', 'fontsize', 'color']],
+        ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']],
+        ['insert', ['table', 'picture', 'link', 'video', 'hr']],
+        ['customButtons', ['tokenBtn']]
+      ],
+      buttons: {
+        'tokenBtn': this.customButton(),
+      },
 
-    var ParametrosButton = function (context) {
+    });
+  }
+
+  customButton() {
+    return (context) => {
       var keywordMap = new Map([
-        ['Firstname', '##FIRSTNAME##'],
-        ['Lastname', '##LASTNAME##'],
-        ['Filename', '##FILENAME##'],
-        ['Keys', '##KEYS##'],
-        ['Hubcode', '##HUBCODE##'],
-        ['Hubname', '##HUBNAME##'],
-        ['User ID', '##USERID##'],
-        ['Full site signature', '##FS_SIGNATURE##'],
-        ['Mobile site signature', '##MS_SIGNATURE##'],
-        ['Full site link (displayed as \'click here\')',  '##PORTAL_LINK_FS##'],
-        ['Mobile site link (displayed as \'click here\')',  '##PORTAL_LINK_MS##']
+        ['Firstname', '{FIRSTNAME}'],
+        ['Lastname', '{LASTNAME}'],
+        ['Filename', '{FILENAME}'],
+        ['Hubname', '{HUBNAME}'],
+        ['User ID', '{USERID}']
       ]);
     
       var list = Array.from(keywordMap.keys());
@@ -37,7 +47,6 @@ export class AppComponent implements OnInit {
       var button = ui.buttonGroup([
         ui.button({
           className: 'btn btn-secondary dropdown-toggle',
-          // ui.dropdownButtonContents(ui.icon(options.icons.emailControls), options),
           contents: '<span class="fa fa-database"></span> Tokens <span class="caret"></span>',
           tooltip: "Parámetros disponibles",
           data: {
@@ -55,25 +64,8 @@ export class AppComponent implements OnInit {
         })
       ]);
 
-      return button.render();   // return button as jquery object 
-    }
-
-
-
-    $('#summernote').summernote({
-      toolbar: [
-        ['misc', ['codeview', 'undo', 'redo', 'codeBlock']],
-        ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-        ['fontsize', ['fontname', 'fontsize', 'color']],
-        ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']],
-        ['insert', ['table', 'picture', 'link', 'video', 'hr']],
-        ['customButtons', ['testBtn']]
-      ],
-      buttons: {
-        'testBtn': ParametrosButton,
-      },
-
-    });
+      return button.render();
   }
+}
 
 }
